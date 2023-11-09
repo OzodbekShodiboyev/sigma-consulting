@@ -42,14 +42,36 @@
             <div style="text-align: center" class="col-md-9 col-xl-5">
                 <h2 class="mt-2">XORIJDA GRANT ASOSIDA TALABA BO'LISHNI ISTAYSIZMI?</h2>
               <p class="fs-2">Sigma Consulting bilan buning imkoni bor!</p>
-              <button class="btn btn-primary mt-3">Talaba bo'lishni istayman</button>
+              <button class="btn btn-primary mt-3" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Talaba bo'lishni istayman</button>
             </div>
           </div>
         </div>
 
       </section>
 
+      <div class="modal fade modal_aloqa" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <form action="{{route('customer.register')}}" method="POST">
+            @csrf
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title text-dark" id="exampleModalLabel">Hoziroq ro'yxatdan o'ting</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <label for="name">Ismingiz:</label> <br>
+              <input class="f_name_input" required type="text" name="name">
+              <label for="phone">Telefon raqamingiz:</label> <br>
+              <input class="f_name_input" required type="number" name="phone">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Yuborish</button>
+            </div>
+          </div>
+        </form>
 
+        </div>
+      </div>
 
 
       <section>
@@ -107,7 +129,7 @@
                 <h2 class="mt-3 fs-3 fs-sm-3 latter-sp-3 lh-base fw-semi-bold">Biz  bilan siz dunyoning 100 dan ortiq mamlakatlarida Bakalavr va Magistratura bosqichlarida o'qish imkoniyatiga ega bo'lasiz! </h2>
               </div>
               <div class="flex-center d-flex">
-                <button class="btn btn-info">Orzularimga erishmoqchiman <span class="fas fa-arrow-right"></span></button>
+                <button class="btn btn-info" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Orzularimga erishmoqchiman <span class="fas fa-arrow-right"></span></button>
               </div>
             </div>
           </div>
@@ -171,7 +193,7 @@
           </div>
           <div class="container">
             <div class="row mt-6">
-                <button class="btn btn-primary">BEPUL KONSULTATSIYA OLISH <span class="fas fa-arrow-right"></span></button>
+                <button class="btn btn-primary" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">BEPUL KONSULTATSIYA OLISH <span class="fas fa-arrow-right"></span></button>
               </div>
           </div>
           </div>

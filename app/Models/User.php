@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Role;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+    public function checkRoles($roles)
+    {
+        if (! is_array($roles)) {
+            $roles = [$roles];            
+        }
+        if(! $this->hasAnyRole($roles)){
+            auth()->logout();
+            abort(404);
+        }
+    }
+    public function hasAnyRole($roles): bool
+    {
+        return (bool) $this->roles()->whereIn('name', $roles)->first();
+    }
+    public function hasRole($role):bool
+    {
+        return (bool) $this->roles()->where('name', $role)->first();
+    }
 }
